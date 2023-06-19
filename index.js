@@ -14,7 +14,7 @@ import checkAuth from './utils/checkAuth.js';
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:["http://localhost:3000/", "https://frontend-64wv.onrender.com"]}));
 
 //Connect to DB and create server
 mongoose
@@ -25,7 +25,7 @@ mongoose
   .then(() => console.log('DB ok'))
   .catch((err) => console.log(err));
 
-app.listen('4000', (err) => {
+app.listen(process.env.PORT||'4000', (err) => {
   if (err) {
     console.log(err);
   }
